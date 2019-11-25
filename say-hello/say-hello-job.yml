@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  creationTimestamp: null
+  name: say-hello
+spec:
+  template:
+    metadata:
+      creationTimestamp: null
+      annotations:
+        vault.security.banzaicloud.io/vault-addr: http://vault.playground.svc.cluster.local:8200
+        vault.security.banzaicloud.io/vault-role: say-hello-rw-role
+        vault.security.banzaicloud.io/vault-skip-verify: "true"
+        vault.security.banzaicloud.io/vault-path: kubernetes
+    spec:
+      serviceAccountName: say-hello
+      containers:
+      - image: node:8.16.2
+        name: say-hello
+        command: ["node", "-e", "console.log(process.env.SEKRET)"]
+        # command: ["cat", "/var/run/secrets/kubernetes.io/serviceaccount/token"]
+        # command: ['printenv']
+        envFrom:
+          - configMapRef:
+              name: say-hello
+      restartPolicy: Never
+status: {}

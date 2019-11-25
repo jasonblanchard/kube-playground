@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: say-hello
+  namespace: playground
+
+---
+apiVersion: "rbac.authorization.k8s.io/v1"
+kind: Role
+metadata:
+  name: say-hello-rw-role
+  namespace: playground
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: say-hello-binding
+  namespace: playground
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: say-hello-rw-role
+subjects:
+  - kind: ServiceAccount
+    name: say-hello
+    namespace: playground

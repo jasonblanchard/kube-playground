@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  CLEARTEXT_CONFIG: yo
+  SEKRET: vault:secret/data/say-hello/secrets#test
+metadata:
+  creationTimestamp: null
+  name: say-hello
