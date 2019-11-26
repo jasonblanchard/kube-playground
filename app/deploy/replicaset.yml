@@ -16,5 +16,5 @@ spec:
         app: hello
     spec:
       containers:
-        - image: jasonblanchard/node-hello
+        - image: jasonblanchard/node-hello:0ed57a91b05caed72f50126d2f8e521559010326
           name: hello

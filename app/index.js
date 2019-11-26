@@ -1,10 +1,12 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 8080;
+const morgan = require('morgan');
+
+app.use(morgan('combined'));
 
 app.get('/', (req, res) => {
   const helloTo = process.env.HELLO_TO || 'world';
-  console.log('Request incoming');
   res.send(`Hello ${helloTo}!`);
 });
 
