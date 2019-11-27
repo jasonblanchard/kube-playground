@@ -13,14 +13,11 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: hello
     spec:
       containers:
-      - image: jasonblanchard/node-hello
+      - image: jasonblanchard/node-hello:830cb5cc2c49ff6f7947fd383653965a0941b323
         name: hello
-        resources: {}
         ports:
           - containerPort: 8080
-status: {}
