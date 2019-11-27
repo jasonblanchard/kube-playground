@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
+  name: hello
   labels:
     app: hello
-  name: hello
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: hello
-  strategy: {}
+  strategy:
+    type: RollingUpdate
   template:
     metadata:
       creationTimestamp: null
@@ -21,4 +21,6 @@ spec:
       - image: jasonblanchard/node-hello
         name: hello
         resources: {}
+        ports:
+          - containerPort: 8080
 status: {}
